@@ -13,13 +13,12 @@ async function createUserList(userListHTML, user_list){
 }
 
 async function readUserJson(){
-    const result = fetch('https://jsonplaceholder.typicode.com/users?_limit=10');
-    const user_list = await result;
+    const user_list = await fetch('https://jsonplaceholder.typicode.com/users?_limit=10');
     return user_list.json();
 }
 
-showUsersButton.addEventListener('click', async() => {createUserList(userListHTML,await readUserJson());
+showUsersButton.addEventListener('click', async() => {
+    await createUserList(userListHTML,await readUserJson());
+    showUsersButton.classList.add('d-none');
 });
-
-showUsersButton.addEventListener('click', () => showUsersButton.classList.add('d-none'));
 
